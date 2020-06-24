@@ -78,6 +78,14 @@ function fillSizeAndY(
 			offsets.belowBar += shapeSize + shapeMargin;
 			return;
 		}
+		default:
+			rendererItem.y = (priceScale.priceToCoordinate(marker.position, firstValue) + halfSize + offsets.belowBar) as Coordinate;
+			if (rendererItem.text !== undefined) {
+				rendererItem.text.y = rendererItem.y + halfSize + shapeMargin + textHeight * (0.5 + Constants.TextMargin) as Coordinate;
+				offsets.belowBar += textHeight * (1 + 2 * Constants.TextMargin);
+			}
+			offsets.belowBar += shapeSize + shapeMargin;
+			return;
 	}
 
 	ensureNever(marker.position);
